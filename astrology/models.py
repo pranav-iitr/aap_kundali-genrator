@@ -3,6 +3,18 @@ from django.db import models
 # Create your models here.
 from django.db import models
 
+planet_options = [
+    ('Surya', 'Surya'),
+    ('Moon', 'Moon'),
+    ('Mangal', 'Mangal'),
+    ('Budh', 'Budh'),
+    ('Guru', 'Guru'),
+    ('Shukra', 'Shukra'),
+    ('Shani', 'Shani'),
+    ('Rahu', 'Rahu'),
+    ('Ketu', 'Ketu'),
+]
+
 class House(models.Model):
     house_no = models.IntegerField()
     
@@ -34,4 +46,24 @@ class House(models.Model):
 
     def __str__(self):
         return f'House {self.house_no}'
+    
+class DashaPhal(models.Model):
+    planet = models.CharField(max_length=50, choices=planet_options)
+    results = models.TextField()
 
+    def __str__(self):
+        return f'{self.planet}'
+class AntarDashaPhal(models.Model):
+    dasha = models.ForeignKey(DashaPhal, on_delete=models.CASCADE)
+    planet = models.CharField(max_length=50, choices=planet_options)
+    results = models.TextField()
+
+    def __str__(self):
+        return f'{self.planet} in {self.dasha}'
+class PratyantarDashaPhal(models.Model):
+    antardasha = models.ForeignKey(AntarDashaPhal, on_delete=models.CASCADE)
+    planet = models.CharField(max_length=50, choices=planet_options)
+    results = models.TextField()
+
+    def __str__(self):
+        return f'{self.planet} in {self.antardasha} in {self.antardasha.dasha}'
