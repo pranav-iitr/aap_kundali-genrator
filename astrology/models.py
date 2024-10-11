@@ -31,9 +31,43 @@ rashi_options = [
     ('Meen', 'Meen'),
 ]
 
+naksatra_options = [
+    ('None', 'None'),
+    ('Ashwini', 'Ashwini'),
+    ('Bharani', 'Bharani'),
+    ('Kritika', 'Kritika'),
+    ('Rohini', 'Rohini'),
+    ('Mrigashira', 'Mrigashira'),
+    ('Ardra', 'Ardra'),
+    ('Punarvasu', 'Punarvasu'),
+    ('Pushya', 'Pushya'),
+    ('Ashlesha', 'Ashlesha'),
+    ('Magha', 'Magha'),
+    ('Purva Phalguni', 'Purva Phalguni'),
+    ('Uttara Phalguni', 'Uttara Phalguni'),
+    ('Hasta', 'Hasta'),
+    ('Chitra', 'Chitra'),
+    ('Swati', 'Swati'),
+    ('Vishakha', 'Vishakha'),
+    ('Anuradha', 'Anuradha'),
+    ('Jyeshtha', 'Jyeshtha'),
+    ('Mula', 'Mula'),
+    ('Purva Ashadha', 'Purva Ashadha'),
+    ('Uttara Ashadha', 'Uttara Ashadha'),
+    ('Shravana', 'Shravana'),
+    ('Dhanishta', 'Dhanishta'),
+    ('Shatabhisha', 'Shatabhisha'),
+    ('Purva Bhadrapada', 'Purva Bhadrapada'),
+    ('Uttara Bhadrapada', 'Uttara Bhadrapada'),
+    ('Revati', 'Revati'),
+]
+
 class House(models.Model):
     house_no = models.IntegerField()
     rashi = models.CharField(max_length=50, choices=rashi_options,default='None')
+    nakshtra = models.CharField(max_length=50, choices=naksatra_options,default='None')
+    lagna_raashi = models.CharField(max_length=50, choices=rashi_options,default='None')
+    lagna_planet = models.CharField(max_length=50, choices=planet_options,default='None')
 
     
     # Planet presence booleans
@@ -64,14 +98,14 @@ class House(models.Model):
     def __str__(self):
         return f'House {self.house_no}'
     
-class DashaPhal(models.Model):
+class MahaDashaPhal(models.Model):
     planet = models.CharField(max_length=50, choices=planet_options)
     results = models.TextField()
 
     def __str__(self):
         return f'{self.planet}'
 class AntarDashaPhal(models.Model):
-    dasha = models.ForeignKey(DashaPhal, on_delete=models.CASCADE)
+    dasha = models.ForeignKey(MahaDashaPhal, on_delete=models.CASCADE)
     planet = models.CharField(max_length=50, choices=planet_options)
     results = models.TextField()
 
