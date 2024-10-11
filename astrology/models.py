@@ -62,10 +62,44 @@ naksatra_options = [
     ('Revati', 'Revati'),
 ]
 
+house_options = [
+    ('None', 'None'),
+    ('1', '1'),
+    ('2', '2'),
+    ('3', '3'),
+    ('4', '4'),
+    ('5', '5'),
+    ('6', '6'),
+    ('7', '7'),
+    ('8', '8'),
+    ('9', '9'),
+    ('10', '10'),
+    ('11', '11'),
+    ('12', '12'),
+]
+
+nakshtra_pada_options = [
+
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+]
+
+elemnt_options = [  
+    ('None', 'None'),
+    ('Fire', 'Fire'),
+    ('Earth', 'Earth'),
+    ('Air', 'Air'),
+    ('Water', 'Water'),
+]
+
 class House(models.Model):
-    house_no = models.IntegerField()
+    house_no = models.IntegerField(choices=house_options)
     rashi = models.CharField(max_length=50, choices=rashi_options,default='None')
     nakshtra = models.CharField(max_length=50, choices=naksatra_options,default='None')
+    nakshtra_pada = models.IntegerField(default=0, choices=nakshtra_pada_options)
+    element = models.CharField(max_length=50, choices=elemnt_options,default='None')
     lagna_raashi = models.CharField(max_length=50, choices=rashi_options,default='None')
     lagna_planet = models.CharField(max_length=50, choices=planet_options,default='None')
 
