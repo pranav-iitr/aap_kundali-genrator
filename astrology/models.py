@@ -15,8 +15,26 @@ planet_options = [
     ('Ketu', 'Ketu'),
 ]
 
+rashi_options = [
+    ('None', 'None'),
+    ('Mesh', 'Mesh'),
+    ('Vrishabh', 'Vrishabh'),
+    ('Mithun', 'Mithun'),
+    ('Kark', 'Kark'),
+    ('Simha', 'Simha'),
+    ('Kanya', 'Kanya'),
+    ('Tula', 'Tula'),
+    ('Vrischik', 'Vrischik'),
+    ('Dhanu', 'Dhanu'),
+    ('Makar', 'Makar'),
+    ('Kumbh', 'Kumbh'),
+    ('Meen', 'Meen'),
+]
+
 class House(models.Model):
     house_no = models.IntegerField()
+    rashi = models.CharField(max_length=50, choices=rashi_options,default='None')
+
     
     # Planet presence booleans
     surya_present = models.BooleanField(default=False)
@@ -41,7 +59,6 @@ class House(models.Model):
     ketu_drishti = models.BooleanField(default=False)
 
     # Rashi field
-    rashi = models.CharField(max_length=50)
     results = models.TextField()
 
     def __str__(self):
