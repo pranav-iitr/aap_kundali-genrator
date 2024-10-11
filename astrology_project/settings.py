@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-rw1m68yny-#$*_$0-52sk9n0sg%kr9pz*nc07@ei#^97u&yw=@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -115,6 +115,14 @@ CORS_ALLOW_METHODS = (
     "POST",
     "PUT",
 )
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://crm.horocosmo.com',
+    'http://localhost:3000',
+    'http://localhost:8000',
+    'http://crm.horocosmo.com',
+]
+
 
 
 # Internationalization
