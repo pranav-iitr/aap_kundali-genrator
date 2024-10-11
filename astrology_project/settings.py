@@ -107,6 +107,16 @@ AUTH_PASSWORD_VALIDATORS = [
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+CORS_ALLOW_METHODS = (
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+)
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
