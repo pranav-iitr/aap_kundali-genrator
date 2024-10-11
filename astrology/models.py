@@ -63,19 +63,18 @@ naksatra_options = [
 ]
 
 house_options = [
-    ('None', 'None'),
-    ('1', '1'),
-    ('2', '2'),
-    ('3', '3'),
-    ('4', '4'),
-    ('5', '5'),
-    ('6', '6'),
-    ('7', '7'),
-    ('8', '8'),
-    ('9', '9'),
-    ('10', '10'),
-    ('11', '11'),
-    ('12', '12'),
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    (6, 6),
+    (7, 7),
+    (8, 8),
+    (9, 9),
+    (10, 10),
+    (11, 11),
+    (12, 12),
 ]
 
 nakshtra_pada_options = [
@@ -95,7 +94,7 @@ elemnt_options = [
 ]
 
 class House(models.Model):
-    house_no = models.IntegerField(choices=house_options)
+    house_no = models.IntegerField(choices=house_options,default=1)
     rashi = models.CharField(max_length=50, choices=rashi_options,default='None')
     nakshtra = models.CharField(max_length=50, choices=naksatra_options,default='None')
     nakshtra_pada = models.IntegerField(default=0, choices=nakshtra_pada_options)
